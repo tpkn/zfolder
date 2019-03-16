@@ -49,7 +49,7 @@ Returns path to zip-archive and total zipped files
 ```javascript
 const ZFolder = require('zfolder');
 
-let files_list = await ZFolder('./test/');
+let result = await ZFolder('./test/');
 ```
 
 
