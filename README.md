@@ -14,27 +14,29 @@ npm install zfolder
 
 ## API
 
-### ZFolder(folder[, zip_path, options])
+```javascript
+await ZFolder(folder[, zip_path, options])
+```
 
 
 ### folder   
 **Type**: _String_   
 
 
-### zip_path   
+### zip_path
 **Type**: _String_   
 
 
 ### options   
 **Type**: _Object_   
-- `recursive` _<Boolean>_  If `false`, then nested files would be ignored. `true` by default
+- `recursive` <_Boolean_>  If `false`, then nested files would be ignored. `true` by default
 
 
 
 ### @return   
 **Type**: _Object_   
 Returns path to zip-archive and total zipped files
-```json
+```
 {
   zip_path: Z:/ ... /test.zip,
   total: 805
