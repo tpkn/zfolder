@@ -29,6 +29,7 @@ await ZFolder(folder[, zip_path, options])
 
 ### options   
 **Type**: _Object_   
+- `filter` <_Object_> | <_Function_>  Filter some files. For more details [check ReadDirRec](https://www.npmjs.com/package/readdirrec#optionsfilter) module settings
 - `recursive` <_Boolean_>  If `false`, then nested files would be ignored. `true` by default
 
 
@@ -53,4 +54,8 @@ let result = await ZFolder('./test/');
 ```
 
 
+
+## Changelog 
+#### v1.1.0 (2019-03-16):
+- added option to `filter` files inside the folder
 

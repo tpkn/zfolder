@@ -16,7 +16,10 @@ const ReadDirRec = require('readdirrec');
 function ZFolder(folder, zip_path, options = {}){
    return new Promise(async (resolve, reject) => {
       if(typeof folder !== 'string'){
-         throw new TypeError('folder path should a string');
+        return reject(new TypeError('folder path should a string'));
+      }
+      if(!fs.existsSync(folder) || !fs.lstatSync(folder).isDirectory()){
+         return reject(new TypeError('folder does not exist'));
       }
 
       // Set input folder name and path as output zip file
@@ -26,27 +29,33 @@ function ZFolder(folder, zip_path, options = {}){
       }
 
 
-      let { recursive = true } = options;
+      // Options
+      let { filter = {}, recursive = true } = options;
 
       // Read folder
-      let files_list = await ReadDirRec(folder, { recursive });
+      let files_list = await ReadDirRec(folder, { filter, recursive });
 
-      let zip = new Zip.ZipFile();
-      let zip_stream = zip.outputStream.pipe(fs.createWriteStream(zip_path));
-      
-      zip_stream.on('close', () => {
-         resolve({ zip_path, total: files_list.length });
-      });
-      
-      for(let i = 0, len = files_list.length; i < len; i++){
-         let file = files_list[i];
-         let file_zipped = path.normalize(file).replace(path.normalize(folder), '');
+      try{
 
-         zip.addFile(file, file_zipped);
+         let zip = new Zip.ZipFile();
+         let zip_stream = zip.outputStream.pipe(fs.createWriteStream(zip_path));
+         
+         zip_stream.on('close', () => {
+            resolve({ zip_path, total: files_list.length });
+         });
+         
+         for(let i = 0, len = files_list.length; i < len; i++){
+            let file = files_list[i];
+            let file_zipped = path.normalize(file).replace(path.normalize(folder), '').replace(/^[\\\/]+/, '');
+
+            zip.addFile(file, file_zipped);
+         }
+
+         zip.end();
+
+      }catch(err){
+         reject(err);
       }
-
-      zip.end();
-      
    })
 }
 
