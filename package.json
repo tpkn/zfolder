@@ -1,13 +1,13 @@
 {
    "name": "zfolder",
    "main": "zfolder.js",
-   "version": "1.1.0",
+   "version": "1.1.1",
    "author": {
       "url": "https://github.com/tpkn/"
    },
    "dependencies": {
-      "readdirrec": "latest",
-      "yazl": "latest"
+      "readdirrec": "2.3.1",
+      "yazl": "2.5.1"
    },
    "repository": "https://github.com/tpkn/zfolder",
    "license": "MIT",
