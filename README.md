@@ -1,4 +1,4 @@
-# ZFodler [![npm Package](https://img.shields.io/npm/v/zfolder.svg)](https://www.npmjs.org/package/zfolder)
+# ZFolder [![npm Package](https://img.shields.io/npm/v/zfolder.svg)](https://www.npmjs.org/package/zfolder)
 Zip all files inside folder
 
 
