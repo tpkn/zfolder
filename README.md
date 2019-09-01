@@ -39,8 +39,7 @@ await ZFolder(folder[, zip_path, options])
 Returns path to zip-archive and total zipped files
 ```
 {
-  zip_path: Z:/ ... /test.zip,
-  total: 805
+  path: Z:/ ... /test.zip,
 }
 ```
 
